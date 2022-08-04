@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Formulario = () => {
+const Formulario = ({ pacientes, setPacientes }) => {
   //Variables de estado que utilizaremos en nuestro componente
   const [nombre, setNombre] = useState('');
   const [propietario, setPropietario] = useState('');
@@ -21,6 +21,25 @@ const Formulario = () => {
     } else {
       console.log('Todos los campos llenos');
       setErrors(false);
+
+      //objeto de paciente
+      const objetoPaciente = {
+        nombre,
+        propietario,
+        email,
+        fecha,
+        sintomas,
+      };
+
+      // console.log(objetoPaciente);
+      setPacientes([...pacientes, objetoPaciente]);
+
+      //Reiniciar el From
+      setNombre('');
+      setPropietario('');
+      setEmail('');
+      setFecha('');
+      setSintomas('');
     }
   };
 
