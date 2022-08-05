@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Error from './Error';
 
 const Formulario = ({ pacientes, setPacientes }) => {
   //Variables de estado que utilizaremos en nuestro componente
@@ -10,6 +11,13 @@ const Formulario = ({ pacientes, setPacientes }) => {
 
   //Variable para el manejo de errores en el Formulario
   const [errors, setErrors] = useState(false);
+
+  const generarId = () => {
+    const random = Math.random().toString(36).slice(2);
+    const fecha = Date.now().toString(36);
+
+    return random + fecha;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +37,7 @@ const Formulario = ({ pacientes, setPacientes }) => {
         email,
         fecha,
         sintomas,
+        id: generarId(),
       };
 
       // console.log(objetoPaciente);
@@ -51,9 +60,9 @@ const Formulario = ({ pacientes, setPacientes }) => {
       </p>
       <form onSubmit={handleSubmit} className='bg-white shadow-md rounded-lg py-10 px-5 mb-10'>
         {errors && (
-          <div className='bg-red-800 font-bold text-white p-3 mb-3 uppercase rounded-md text-center'>
+          <Error>
             <p>Todos los campos son obligatorios</p>
-          </div>
+          </Error>
         )}
 
         <div className='mb-5'>
