@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Paciente from './Paciente';
 
-const ListadoPacientes = ({ pacientes, setPaciente }) => {
+const ListadoPacientes = ({ pacientes, setPaciente, eliminarPaciente }) => {
   useEffect(() => {
     if (pacientes.length > 0) {
       console.log('Nuevo Paciente');
@@ -18,7 +18,12 @@ const ListadoPacientes = ({ pacientes, setPaciente }) => {
           </p>
 
           {pacientes.map((paciente) => (
-            <Paciente key={paciente.id} paciente={paciente} setPaciente={setPaciente} />
+            <Paciente
+              key={paciente.id}
+              paciente={paciente}
+              setPaciente={setPaciente}
+              eliminarPaciente={eliminarPaciente}
+            />
           ))}
         </>
       ) : (
